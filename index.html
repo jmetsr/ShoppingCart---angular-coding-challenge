@@ -1,0 +1,74 @@
+<style>
+	.product {
+		float: left;
+		margin: 10px;
+	}
+	.product-list {
+		width: 600px;
+	}
+	.price {
+		float: right;
+		position: relative;
+		bottom: 18px;
+		right: 5px;
+	}
+	.cart {
+		position: relative;
+		left: 20px;
+	}
+	.totals {
+		position: relative;
+		left: 20px;
+	}
+
+</style>
+
+
+
+<html ng-app="app">
+
+	<body ng-controller="MainController">
+
+
+		<ul class="product-list">
+			<li ng-repeat="product in products track by $index" class="product">
+				{{product.title}} <br>
+				<img src={{product.imageUrl}}> <br>
+				<div class="price">${{product.price}}.00</div>
+				<button ng-click="$parent.inc(product)" id="{{product.title}}">Add to Cart</button>
+				
+				
+			</li>
+		</ul> 
+
+		<div class="cart">
+			Shopping Cart
+			<ul>
+				<li ng-repeat="product in cart track by $index">
+					{{product.title}}
+				</li>
+			</ul>
+			<br>
+			
+
+		</div>
+		Totals
+		<ul class="totals">
+			<li ng-repeat="(name, number) in cart.totals">
+
+				{{name}}: {{number}}
+			</li>
+		</ul>
+		Cost: ${{totalCost}}.00
+
+	</body>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+	<script src="index.js"></script>
+</html>
+
+
+
+
+
+
+
